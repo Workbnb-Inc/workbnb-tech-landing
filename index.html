@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Scout AI – Launching Soon</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI";
+        background: #050816;
+        color: #f9fafb;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .wrapper {
+        text-align: center;
+        padding: 2rem;
+        max-width: 640px;
+      }
+      .logo-img {
+        width: 180px;
+        margin-bottom: 1.25rem;
+      }
+      h1 {
+        font-size: clamp(2rem, 4vw, 2.75rem);
+        margin-bottom: 0.75rem;
+      }
+      p.subtitle {
+        font-size: 1rem;
+        color: #9ca3af;
+        margin-bottom: 2rem;
+        line-height: 1.5;
+      }
+      .countdown {
+        display: flex;
+        justify-content: center;
+        gap: 0.75rem;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+      }
+      .unit {
+        background: rgba(15, 23, 42, 0.9);
+        border-radius: 0.75rem;
+        padding: 0.75rem 1rem;
+        min-width: 72px;
+      }
+      .value {
+        font-size: 1.5rem;
+        font-weight: 700;
+      }
+      .label {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #9ca3af;
+      }
+      .note {
+        font-size: 0.85rem;
+        color: #9ca3af;
+        line-height: 1.45;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+
+      <!-- Workbnb Logo -->
+      <img src="logo.png" alt="Workbnb Logo" class="logo-img" />
+
+      <h1>Meet Scout AI — Your Workforce Housing Radar</h1>
+
+      <p class="subtitle">
+        The next evolution of workforce housing intelligence is almost here.
+        Scout AI will light up the hottest markets, reveal hidden demand, and
+        help real-estate investors spot workforce housing opportunities with
+        precision <i>— before the crowd.</i>
+        <br /><br />
+        We’re counting down to our official debut on
+        <strong>20 November</strong>.
+      </p>
+
+      <div id="countdown" class="countdown">
+        <div class="unit">
+          <div id="days" class="value">00</div>
+          <div class="label">Days</div>
+        </div>
+        <div class="unit">
+          <div id="hours" class="value">00</div>
+          <div class="label">Hours</div>
+        </div>
+        <div class="unit">
+          <div id="minutes" class="value">00</div>
+          <div class="label">Minutes</div>
+        </div>
+        <div class="unit">
+          <div id="seconds" class="value">00</div>
+          <div class="label">Seconds</div>
+        </div>
+      </div>
+
+      <p id="status" class="note">
+        Soon you’ll be able to explore live heatmaps, track major projects, and
+        unlock the blueprint of workforce housing demand — powered by Workbnb.
+        Stay tuned.
+      </p>
+    </div>
+
+    <script>
+      // Target: 20 Nov 2025, midnight Chicago time (UTC-06:00)
+      const target = new Date("2025-11-20T00:00:00-06:00").getTime();
+
+      const daysEl = document.getElementById("days");
+      const hoursEl = document.getElementById("hours");
+      const minutesEl = document.getElementById("minutes");
+      const secondsEl = document.getElementById("seconds");
+      const statusEl = document.getElementById("status");
+      const countdownEl = document.getElementById("countdown");
+
+      const timer = setInterval(() => {
+        const now = new Date().getTime();
+        const distance = target - now;
+
+        if (distance <= 0) {
+          clearInterval(timer);
+          countdownEl.style.display = "none";
+          statusEl.textContent = "Scout AI is now live.";
+          return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        daysEl.textContent = String(days).padStart(2, "0");
+        hoursEl.textContent = String(hours).padStart(2, "0");
+        minutesEl.textContent = String(minutes).padStart(2, "0");
+        secondsEl.textContent = String(seconds).padStart(2, "0");
+      }, 1000);
+    </script>
+  </body>
+</html>
